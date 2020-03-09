@@ -9,6 +9,18 @@ config:
     - client-java: release
 
 build:
+  static-analysis:
+    job:
+      dependency-analysis:
+        machine: ubuntu-1910
+        type: foreground
+        script: echo hello
+  correctness:
+    job:
+      build:
+        machine: ubuntu-1910
+        type: foreground
+        script: echo hello
   performance:
     jobs:
       run-grakn:
@@ -26,7 +38,6 @@ build:
           cd ./dist/grakn-core-all-linux/
           ./grakn server start
           export GRABL_PERFORMANCE_RUN_GRAKN_URI="${HOSTNAME}:48555"
-          
       test-performance-big:
         machine: grabl-ubuntu-1910
         type: foreground
