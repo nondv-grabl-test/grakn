@@ -8,6 +8,33 @@ config:
     - protocol: [snapshot, release]
     - client-java: release
 
+sync:
+  validation:
+    jobs:
+      sync-validate-compilation:
+        machine: ubuntu-1910
+        type: foreground
+        script: |
+          bazel run @graknlabs_build_tools//sync-dependencies-bazel $GRABL_DEPENDENCIES_NEW         # graql@abc123 protocol@bcd234
+          bazel build //...
+      sync-validate-correctness:
+        machine: ubuntu-1910
+        type: foreground
+        script: |
+          bazel run @graknlabs_build_tools//sync-dependencies-bazel $GRABL_DEPENDENCIES_NEW         # graql@abc123 protocol@bcd234
+          bazel build //test/basic-correctness
+    execution:
+      - sync-validate-compilation
+      - sync-validate-correctness
+  update:
+    job:
+      machine: ubuntu-1910
+      type: foreground
+      script: |
+        bazel run @graknlabs_build_tools//sync-dependencies-bazel $GRABL_DEPENDENCIES_NEW         # graql@abc123 protocol@bcd234
+        bazel run @graknlabs_build_tools//sync-dependencies-npm $GRABL_DEPENDENCIES_NEW           # graql@abc123 protocol@bcd234
+        # Committing and pushing to the upstream repo should be done by Grabl
+
 build:
   static-analysis:
     job:
