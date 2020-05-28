@@ -37,6 +37,7 @@ build:
             --api-token xzWGjjJcCBeur3YUzVyPqjtB14g1cTVd \
             --iterations 50 \
             --seed 1
+          sleep 1h
     execution:
       - run-grakn
       - test-performance-big:
