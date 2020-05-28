@@ -8,6 +8,7 @@ build:
         script: |
           git clone https://github.com/graknlabs/grakn.git
           cd grakn
+          git checkout 8008ae59673b7eda8f12be7af5c40433e697959f
           bazel build //:assemble-linux-targz
           mkdir dist
           tar -xf ./bazel-bin/grakn-core-all-linux.tar.gz -C ./dist/
@@ -18,9 +19,10 @@ build:
         machine: grabl-ubuntu-1910
         type: foreground
         script: |
-          git clone https://github.com/graknlabs/grakn.git
-          cd grakn
-          bazel run @graknlabs_simulation//:simulation -- \
+          git clone https://github.com/lolski/simulation.git
+          cd simulation
+          git checkout fc5942f1ebc92aee24cfafd9a27e97020ae7e1c5
+          bazel run //:simulation -- \
             --keyspace simulation \
             --grakn-uri $GRABL_PERFORMANCE_RUN_GRAKN_URI \
             --tracing-uri $GRABL_URI \
