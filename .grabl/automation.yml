@@ -6,7 +6,6 @@ build:
         type: background
         timeout: "1800"
         script: |
-          sudo systemctl disable job-timeout
           git clone https://github.com/graknlabs/grakn.git
           cd grakn
           git checkout 1.7.1
@@ -24,7 +23,6 @@ build:
         machine: grabl-ubuntu-1910
         type: foreground
         script: |
-          sudo systemctl disable job-timeout
           git clone https://github.com/lolski/simulation.git
           cd simulation
           git checkout fc5942f1ebc92aee24cfafd9a27e97020ae7e1c5
@@ -38,8 +36,7 @@ build:
             --username lriuui0x0 \
             --api-token xzWGjjJcCBeur3YUzVyPqjtB14g1cTVd \
             --iterations 50 \
-            --seed 1 || true
-          sleep 3h
+            --seed 1
     execution:
       - run-grakn
       - test-performance-big:
