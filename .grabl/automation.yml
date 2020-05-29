@@ -22,7 +22,7 @@ build:
         script: |
           git clone https://github.com/graknlabs/grakn.git
           cd grakn
-          git checkout 1.7.1
+          git checkout 1.7.0
           bazel build //:assemble-linux-targz
           mkdir dist
           tar -xf ./bazel-bin/grakn-core-all-linux.tar.gz -C ./dist/
