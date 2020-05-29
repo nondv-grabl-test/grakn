@@ -1,18 +1,4 @@
 build:
-  quality:
-    job:
-      dependency-analysis:
-        machine: grabl-ubuntu-1910
-        type: foreground
-        script: |
-          echo "workflow quality: dependency-analysis"
-  correctness:
-    job:
-      build:
-        machine: grabl-ubuntu-1910
-        type: foreground
-        script: |
-          echo "workflow correctness: build"
   performance:
     jobs:
       run-grakn:
@@ -55,27 +41,4 @@ build:
       - run-grakn
       - test-performance-big:
           depends: [run-grakn]
-
-release:
-  validation:
-    job:
-      validate-dependencies:
-        machine: grabl-ubuntu-1910
-        type: foreground
-        script: |
-          echo "workflow validation: validate-dependencies"
-  deployment:
-    job:
-      deploy-workbase:
-        machine: grabl-ubuntu-1910
-        type: foreground
-        script: |
-          echo "workflow deployment: deploy-workbase"
-  bump:
-    job:
-      bump-version:
-        machine: grabl-ubuntu-1910
-        type: foreground
-        script: |
-          echo "workflow bump: bump-version"
 
