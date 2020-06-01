@@ -26,7 +26,7 @@ build:
           git clone https://github.com/lolski/simulation.git
           cd simulation
           cp 0.tcp.ngrok.io.jks /tmp/0.tcp.ngrok.io.jks
-          git checkout d3a1767976b14564898d1562503eb4c1fbab22dd
+          git checkout 410a63e35f55221322c17c97debc2c4f955e3f07
           bazel run //:simulation -- \
             --keyspace world \
             --grakn-uri $GRABL_PERFORMANCE_RUN_GRAKN_URI \
