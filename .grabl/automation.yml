@@ -6,14 +6,16 @@ build:
         type: background
         timeout: "1800"
         script: |
-          git clone https://github.com/graknlabs/grakn.git
+          git clone https://github.com/lolski/grakn.git
           cd grakn
-          git checkout 1.7.0
+          git checkout f04512e47c6b8b4ed87239870d07b3ce7f2c58ee
+          cp rootCA.jks /tmp/rootCA.jks
           bazel build //:assemble-linux-targz
           mkdir dist
           tar -xf ./bazel-bin/grakn-core-all-linux.tar.gz -C ./dist/
           cd ./dist/grakn-core-all-linux/
-          ./grakn server start -- \
+          SERVER_JAVAOPTS="-Djavax.net.ssl.trustStore=/tmp/rootCA.jks -Djavax.net.ssl.trustStorePassword=changeit" \
+            ./grakn server start -- \
             --tracing-enabled \
             --tracing-uri $GRABL_URI \
             --tracing-username lriuui0x0 \
