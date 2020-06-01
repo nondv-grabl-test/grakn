@@ -25,7 +25,7 @@ build:
         script: |
           git clone https://github.com/lolski/simulation.git
           cd simulation
-          git checkout 49cdd7340c27a4a78734f3051371247e53b0d54d
+          git checkout f1f3caabe1fbdedd6382a8216c689c93a7ca0094
           cp rootCA.jks /tmp/rootCA.jks
           bazel run //:simulation -- \
             --keyspace world \
