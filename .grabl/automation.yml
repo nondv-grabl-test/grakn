@@ -4,7 +4,7 @@ build:
       run-grakn:
         machine: grabl-ubuntu-1910-old
         type: background
-        timeout: "1800"
+        timeout: "18000"
         script: |
           git clone https://github.com/lolski/grakn.git
           cd grakn
@@ -24,6 +24,7 @@ build:
       test-performance-big:
         machine: grabl-ubuntu-1910-old
         type: foreground
+        timeout: "18000"
         script: |
           git clone https://github.com/lolski/simulation.git
           cd simulation
@@ -40,7 +41,7 @@ build:
             --api-token T30qo2SGRfqYwbdZndtpzVdAEqi4TBEd \
             --iterations 5 \
             --seed 1 || true
-          sleep 3h
+          sleep 5h
     execution:
       - run-grakn
       - test-performance-big:
