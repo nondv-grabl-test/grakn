@@ -2,7 +2,7 @@ build:
   performance:
     jobs:
       run-grakn:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-1910-old
         type: background
         timeout: "1800"
         script: |
@@ -22,7 +22,7 @@ build:
             --tracing-access-token T30qo2SGRfqYwbdZndtpzVdAEqi4TBEd
           export GRABL_PERFORMANCE_RUN_GRAKN_URI="${HOSTNAME}:48555"
       test-performance-big:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-1910-old
         type: foreground
         script: |
           git clone https://github.com/lolski/simulation.git
