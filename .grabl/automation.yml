@@ -2,21 +2,21 @@ build:
   quality:
     job:
       dependency-analysis:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           echo "workflow quality: dependency-analysis"
   correctness:
     job:
       build:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           echo "workflow correctness: build"
   performance:
     jobs:
       run-grakn:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: background
         timeout: "1800"
         script: |
@@ -34,7 +34,7 @@ build:
             --tracing-access-token xzWGjjJcCBeur3YUzVyPqjtB14g1cTVd
           export GRABL_PERFORMANCE_RUN_GRAKN_URI="${HOSTNAME}:48555"
       test-performance-big:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           git clone https://github.com/lolski/simulation.git
@@ -60,21 +60,21 @@ release:
   validation:
     job:
       validate-dependencies:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           echo "workflow validation: validate-dependencies"
   deployment:
     job:
       deploy-workbase:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           echo "workflow deployment: deploy-workbase"
   bump:
     job:
       bump-version:
-        machine: grabl-ubuntu-1910
+        machine: grabl-ubuntu-2004
         type: foreground
         script: |
           echo "workflow bump: bump-version"
